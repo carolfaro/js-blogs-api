@@ -1,9 +1,9 @@
-const createBlogPost = (sequelize, DataTypes) => {
+const BlogPost = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define('BlogPost', {
-    id: DataTypes.INTEGER,
+    id:  { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
+    userId: { type: DataTypes.INTEGER, foreignKey: true },
     published: DataTypes.DATE,
     updated: DataTypes.DATE
   });
@@ -15,4 +15,4 @@ const createBlogPost = (sequelize, DataTypes) => {
   return BlogPost;
 }
 
-module.exports = createBlogPost;
+module.exports = BlogPost;

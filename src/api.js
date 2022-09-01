@@ -1,16 +1,15 @@
 const express = require('express');
-// const usersRouter = require('./routers/usersRouter');
-// const categoriesRouter = require('./routers/categoriesRouter');
-// const blogPostsRouter = require('./routers/blogPostsRouter');
-// const postsCategoriesRouter = require('./routers/postsCategoriesRouter');
+const cors = require('cors');
 
-// ...
+const errorMiddleware = require('./middlewares/error');
 
 const app = express();
 
 app.use(express.json());
-// ...
+app.use(cors());
 
-// É importante exportar a constante `app`,
-// para que possa ser utilizada pelo arquivo `src/server.js`
+app.use(require('./router'));
+
+app.use(errorMiddleware);
+
 module.exports = app;
