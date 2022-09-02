@@ -8,6 +8,8 @@ const router = express.Router();
 router.route('/')
 .post(usersValidation.validateUserMiddleware, 
     usersValidation.validateUserByEmail,
-    usersController.createUsers);
+    usersController.createUsers)
+.get(usersValidation.authUsers, 
+    usersController.getAllUsers);
 
 module.exports = router;

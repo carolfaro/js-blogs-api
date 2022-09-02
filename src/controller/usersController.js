@@ -22,6 +22,25 @@ async createUsers(req, res, next) {
         next(err);
     }
 },
+
+async getAllUsers(_req, res) {
+    const users = await usersService.getAllUsers();
+    return res.status(200).json(users);
+},
+
+async authStudent(req, res, next) {
+    const { email, password } = req.body;
+    if (!email || !password) { 
+        return res.status(400).json({ message: 'Some required fields are missing' }); 
+    }
+    try {
+        const token = await authService.authenticate(req.body);
+        if (!token) return res.status(400).json({ message: 'Invalid fields' });
+        return res.status(200).json(token);
+    } catch (err) {
+        next(err);
+    }
+},
 };
 
 module.exports = usersController;
