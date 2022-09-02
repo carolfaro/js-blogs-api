@@ -41,6 +41,29 @@ async authStudent(req, res, next) {
         next(err);
     }
 },
+
+async getUserById(req, res) {
+    const { id } = req.params;
+    try {
+        const findByPK = await usersService.getUserById(id);
+        if (findByPK) return res.status(200).json(findByPK);
+        return res.status(404).json({ message: 'User does not exist' });
+    } catch (err) {
+        return res.status(404).json({ message: 'User does not exist' });
+    }
+},
+
 };
 
 module.exports = usersController;
+
+// const authUsers = (req, res, next) => {
+//     const { authorization } = req.headers;
+//     try {
+//         if (!authorization) return res.status(401).json({ message: 'Token not found' });
+//         const result = jwt.verifyToken(authorization);
+//         req.userId = result.id;
+//         next();
+//     } catch (err) {
+//         return res.status(401).json({ message: 'Expired or invalid token' });
+//     }

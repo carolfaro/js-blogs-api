@@ -12,4 +12,7 @@ router.route('/')
 .get(usersValidation.authUsers, 
     usersController.getAllUsers);
 
+    router.route('/:id')
+    .get(usersValidation.authUsers, usersController.getUserById);
+
 module.exports = router;
