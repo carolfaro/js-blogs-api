@@ -1,6 +1,8 @@
 const authService = require('../services/authService');
 
-const authLogin = async (req, res, next) => {
+const authController = {
+
+async authLogin(req, res, next) {
     const { email, password } = req.body;
     if (!email || !password) { 
         return res.status(400).json({ message: 'Some required fields are missing' }); 
@@ -12,6 +14,7 @@ const authLogin = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+},
 };
 
-module.exports = { authLogin };
+module.exports = authController;
