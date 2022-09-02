@@ -44,13 +44,10 @@ async authStudent(req, res, next) {
 
 async getUserById(req, res) {
     const { id } = req.params;
-    try {
+   
         const findByPK = await usersService.getUserById(id);
         if (findByPK) return res.status(200).json(findByPK);
         return res.status(404).json({ message: 'User does not exist' });
-    } catch (err) {
-        return res.status(404).json({ message: 'User does not exist' });
-    }
 },
 
 };
