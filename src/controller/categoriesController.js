@@ -9,6 +9,11 @@ const categoriesController = {
         const newCategory = await categoriesService.createCategory({ name });
         return res.status(201).json(newCategory);
     },
+
+    async getAllCategories(req, res) {
+        const allCategories = await categoriesService.getAllCategories();
+        return res.status(200).json(allCategories);
+    },
 };
 
 module.exports = categoriesController;
