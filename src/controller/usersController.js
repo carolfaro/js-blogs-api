@@ -13,7 +13,7 @@ async createUsers(req, res, next) {
             image,
         });
         if (create) {
-            console.log(`AQUIII AAAAA ${create}`);
+            // console.log(`AQUIII AAAAA ${create}`);
             const token = await authService.authenticate(create);
             if (!token) return res.status(409).json({ message: 'User already registered' });
             return res.status(201).json(token);

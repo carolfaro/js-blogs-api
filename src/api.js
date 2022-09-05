@@ -9,6 +9,7 @@ app.use(express.json());
 app.use('/login', routes.loginRoute);
 app.use('/user', routes.usersRoute);
 app.use('/categories', routes.categoriesRoute);
+app.use('/post', routes.blogPostRoute);
 
 app.use(errorMiddleware);
 

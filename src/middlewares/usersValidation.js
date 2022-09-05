@@ -18,6 +18,18 @@ const validateUserByEmail = async (req, res, next) => {
     next();
 };
 
+const validateUserById = async (req, res, next) => {
+    const { id } = req.body;
+    const findUser = await User.findOne({
+        attributes: ['id', 'displayName', 'email', 'password', 'image'],
+        where: { id },
+    });
+    console.log(`AQUI CARAOLHOOO ${findUser}`);
+    if (findUser) return res.status(200).json(findUser);
+    next();
+};
+
+// valida token já gerado
 const authUsers = (req, res, next) => {
     const { authorization } = req.headers;
     try {
@@ -30,4 +42,4 @@ const authUsers = (req, res, next) => {
     }
 };
 
-module.exports = { validateUserMiddleware, validateUserByEmail, authUsers };
+module.exports = { validateUserMiddleware, validateUserByEmail, authUsers, validateUserById };
